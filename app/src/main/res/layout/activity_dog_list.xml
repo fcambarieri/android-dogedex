@@ -4,11 +4,27 @@
 
     <data></data>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dog_recycler"
+        android:padding="16dp"
+        android:background="?attr/selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".doglist.DogListActivity" />
 
+    <ProgressBar
+        android:id="@+id/loading_wheel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible"
+        />
+    </FrameLayout>
 </layout>
 
