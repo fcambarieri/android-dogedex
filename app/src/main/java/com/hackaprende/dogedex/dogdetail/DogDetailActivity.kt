@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.hackaprende.dogedex.Dog
-import com.hackaprende.dogedex.R
+import coil.load
+import com.hackaprende.dogedex.model.Dog
 import com.hackaprende.dogedex.databinding.ActivityDogDetailBinding
 
 class DogDetailActivity : AppCompatActivity() {
@@ -28,7 +28,12 @@ class DogDetailActivity : AppCompatActivity() {
             finish()
             return
         }
-
         binding.dog = dog
+        binding.dogIndex.text = "${dog.index}"
+        binding.lifeExpectancy.text = "${dog.lifeExpectancy}"
+        binding.dogImage.load(dog.imageUrl)
+        binding.closeButton.setOnClickListener {
+            finish()
+        }
     }
 }

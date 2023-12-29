@@ -1,4 +1,4 @@
-package com.hackaprende.dogedex
+package com.hackaprende.dogedex.model
 
 import android.os.Parcelable
 import com.squareup.moshi.Json

@@ -1,6 +1,6 @@
 package com.hackaprende.dogedex.api.responses
 
-import com.hackaprende.dogedex.Dog
+import com.hackaprende.dogedex.model.Dog
 import com.squareup.moshi.Json
 
 data class DogListResponse (val dogs : List<Dog>)
