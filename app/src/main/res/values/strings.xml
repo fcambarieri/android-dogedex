@@ -27,4 +27,6 @@
     <string name="password_is_empty">Password is empty</string>
     <string name="password_confirmation_is_empty">Password confirmation is empty</string>
     <string name="passwords_not_match">Passwords doesn\'t match</string>
+    <string name="wrong_user_or_password">User or Password doesn\'t match</string>
+    <string name="unknow_error">Error desconocido</string>
 </resources>

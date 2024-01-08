@@ -2,18 +2,19 @@ package com.hackaprende.dogedex.auth
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Patterns
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.hackaprende.dogedex.R
 import com.hackaprende.dogedex.databinding.FragmentSignUpBinding
+import com.hackaprende.dogedex.util.isEmpty
+import com.hackaprende.dogedex.util.isValidEmail
 
 class SignUpFragment : Fragment() {
 
     interface SignUpFragmentActions {
-        fun onSignUpFieldsValidated(email : String, password : String, confirmationPassword : String)
+        fun onSignUpFieldsValidated(email: String, password: String, confirmationPassword: String)
     }
 
     private lateinit var signUpFragmentActions: SignUpFragmentActions
@@ -22,12 +23,12 @@ class SignUpFragment : Fragment() {
         super.onAttach(context)
         signUpFragmentActions = try {
             context as SignUpFragmentActions
-        }catch (e : Exception) {
+        } catch (e: Exception) {
             throw java.lang.ClassCastException("$context must implement LoginFragmentActions")
         }
     }
 
-    private lateinit var binding : FragmentSignUpBinding
+    private lateinit var binding: FragmentSignUpBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,6 +66,7 @@ class SignUpFragment : Fragment() {
             binding.confirmPasswordInput.error = getString(R.string.passwords_not_match)
             return
         }
+        signUpFragmentActions.onSignUpFieldsValidated(email, password, passwordConfirmation)
     }
 
     private fun clearErrors() {
@@ -73,12 +75,4 @@ class SignUpFragment : Fragment() {
         binding.confirmPasswordInput.error = ""
     }
 
-    private fun isValidEmail(email : String) : Boolean {
-        return !email.isEmpty() &&
-                Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    private fun String.isEmpty() : Boolean {
-        return this.length == 0
-    }
 }

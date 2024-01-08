@@ -13,7 +13,8 @@ class DogRepository {
 
     suspend fun downloadDogs(): ApiResponseStatus<List<Dog>> {
         return makeNetworkCall {
-            getFakeDogs()
+            //getFakeDogs()
+            retrofitService.getAllDogs().data.dogs
         }
     }
 
