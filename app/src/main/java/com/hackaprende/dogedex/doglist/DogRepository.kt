@@ -14,7 +14,22 @@ class DogRepository {
     suspend fun downloadDogs(): ApiResponseStatus<List<Dog>> {
         return makeNetworkCall {
             //getFakeDogs()
-            retrofitService.getAllDogs().data.dogs
+            val response = retrofitService.getAllDogs()
+            return@makeNetworkCall response.data.dogs.map {
+                Dog(
+                    it.id,
+                    it.index,
+                    it.name_es,
+                    it.dog_type,
+                    it.height_female,
+                    it.height_male,
+                    it.image_url,
+                    it.life_expectancy,
+                    it.temperament,
+                    it.weight_female,
+                    it.weight_male
+                )
+            }
         }
     }
 
