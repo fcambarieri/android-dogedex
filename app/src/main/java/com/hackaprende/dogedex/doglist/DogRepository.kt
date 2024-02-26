@@ -1,10 +1,12 @@
 package com.hackaprende.dogedex.doglist
 
+import android.util.Log
 import com.hackaprende.dogedex.model.Dog
 import com.hackaprende.dogedex.api.ApiResponseStatus
 import com.hackaprende.dogedex.api.ApiService
 import com.hackaprende.dogedex.api.DogsApi
 import com.hackaprende.dogedex.api.makeNetworkCall
+import java.lang.Exception
 
 class DogRepository {
 
@@ -31,6 +33,15 @@ class DogRepository {
                 )
             }
         }
+    }
+
+    suspend fun getDogByMLId(mlDogId : String) : ApiResponseStatus<Dog> = makeNetworkCall {
+        val response = retrofitService.getDogByMLId(mlDogId)
+        Log.d("GetDog", response.toString())
+        if (!response.isSuccess) {
+            throw Exception(response.message)
+        }
+        return@makeNetworkCall response.data.dog.toDog()
     }
 
     private fun getFakeDogs(): MutableList<Dog> {

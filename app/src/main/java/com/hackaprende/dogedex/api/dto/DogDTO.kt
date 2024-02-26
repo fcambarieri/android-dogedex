@@ -1,6 +1,7 @@
 package com.hackaprende.dogedex.api.dto
 
 import android.os.Parcelable
+import com.hackaprende.dogedex.model.Dog
 import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
@@ -15,5 +16,21 @@ data class DogDTO(
     val temperament: String,
     val weight_female: String,
     val weight_male: String,
-    val ml_id : String
-) : Parcelable
+    val ml_id: String
+) : Parcelable {
+    fun toDog(): Dog {
+        return Dog(
+            id,
+            index,
+            name_es,
+            dog_type,
+            height_female,
+            height_male,
+            image_url,
+            life_expectancy,
+            temperament,
+            weight_female,
+            weight_male
+        )
+    }
+}
