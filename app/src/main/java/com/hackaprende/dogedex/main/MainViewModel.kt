@@ -5,14 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hackaprende.dogedex.api.ApiResponseStatus
-import com.hackaprende.dogedex.api.responses.DogApiResponse
-import com.hackaprende.dogedex.doglist.DogRepository
+import com.hackaprende.dogedex.doglist.DogTasks
 import com.hackaprende.dogedex.model.Dog
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
-
-    private val dogRepository = DogRepository()
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val dogRepository: DogTasks
+) : ViewModel() {
 
     private val _dog = MutableLiveData<Dog>()
     val dog : LiveData<Dog> get() = _dog

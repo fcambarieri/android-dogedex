@@ -7,13 +7,17 @@ import com.hackaprende.dogedex.api.ApiService
 import com.hackaprende.dogedex.api.DogsApi
 import com.hackaprende.dogedex.api.makeNetworkCall
 import java.lang.Exception
+import javax.inject.Inject
 
-class DogRepository {
+interface DogTasks {
+    suspend fun downloadDogs(): ApiResponseStatus<List<Dog>>
+    suspend fun getDogByMLId(mlDogId : String) : ApiResponseStatus<Dog>
+}
+class DogRepository  @Inject constructor() : DogTasks {
 
-    //LA API NO FUNCIONA
     private val retrofitService: ApiService by lazy { DogsApi.retrofitService }
 
-    suspend fun downloadDogs(): ApiResponseStatus<List<Dog>> {
+    override suspend fun downloadDogs(): ApiResponseStatus<List<Dog>> {
         return makeNetworkCall {
             //getFakeDogs()
             val response = retrofitService.getAllDogs()
@@ -35,7 +39,7 @@ class DogRepository {
         }
     }
 
-    suspend fun getDogByMLId(mlDogId : String) : ApiResponseStatus<Dog> = makeNetworkCall {
+    override suspend fun getDogByMLId(mlDogId : String) : ApiResponseStatus<Dog> = makeNetworkCall {
         val response = retrofitService.getDogByMLId(mlDogId)
         Log.d("GetDog", response.toString())
         if (!response.isSuccess) {

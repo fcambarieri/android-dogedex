@@ -27,17 +27,20 @@ import com.hackaprende.dogedex.auth.LoginActivity
 import com.hackaprende.dogedex.camera.ImageActivity
 import com.hackaprende.dogedex.databinding.ActivityMainBinding
 import com.hackaprende.dogedex.dogdetail.DogDetailActivity
+import com.hackaprende.dogedex.dogdetail.DogDetailComposeActivity
 import com.hackaprende.dogedex.doglist.DogListActivity
 import com.hackaprende.dogedex.machinelearning.Classifier
 import com.hackaprende.dogedex.model.Dog
 import com.hackaprende.dogedex.model.User
 import com.hackaprende.dogedex.setttings.SettingActivity
+import dagger.hilt.android.AndroidEntryPoint
 import org.tensorflow.lite.support.common.FileUtil
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var classifier: Classifier
@@ -120,8 +123,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun openDetailDogActivity(dog: Dog) {
         if (dog != null) {
-            val intent = Intent(this, DogDetailActivity::class.java)
-            intent.putExtra(DogDetailActivity.DOG_KEY, dog)
+            val intent = Intent(this, DogDetailComposeActivity::class.java)
+            intent.putExtra(DogDetailComposeActivity.DOG_KEY, dog)
             startActivity(intent)
         }
     }

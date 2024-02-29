@@ -20,6 +20,11 @@
         android:theme="@style/Theme.Dogedex"
         tools:targetApi="31">
         <activity
+            android:name=".dogdetail.DogDetailComposeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_dog_detail_compose"
+            android:theme="@style/Theme.Dogedex" />
+        <activity
             android:name=".camera.ImageActivity"
             android:exported="false" />
         <activity
@@ -31,13 +36,13 @@
         </activity>
         <activity
             android:name=".auth.LoginActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".dogdetail.DogDetailActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".doglist.DogListActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".main.MainActivity"
             android:exported="true">

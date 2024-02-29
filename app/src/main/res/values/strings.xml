@@ -29,4 +29,8 @@
     <string name="passwords_not_match">Passwords doesn\'t match</string>
     <string name="wrong_user_or_password">User or Password doesn\'t match</string>
     <string name="unknow_error">Error desconocido</string>
+    <string name="title_activity_dog_detail_compose">DogDetailComposeActivity</string>
+    <string name="dog_index_format">#%d</string>
+    <string name="not_your_dog_button">No your dog</string>
+    <string name="dog_life_expectancy_format">Life</string>
 </resources>
