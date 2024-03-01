@@ -17,7 +17,9 @@ import com.hackaprende.dogedex.dogdetail.ui.theme.DogedexTheme
 import com.hackaprende.dogedex.model.Dog
 import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DogDetailComposeActivity : ComponentActivity() {
+
     companion object {
         const val DOG_KEY = "dog"
         const val IS_RECOGNITION_KEY = "is_recognition"
@@ -26,17 +28,17 @@ class DogDetailComposeActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val dog = intent?.extras?.getParcelable(DOG_KEY, Dog::class.java)
+        /*val dog = intent?.extras?.getParcelable(DOG_KEY, Dog::class.java)
 
         if (dog == null) {
             Toast.makeText(this, "Dog not found", Toast.LENGTH_LONG)
             finish()
             return
-        }
+        }*/
 
         setContent {
             DogedexTheme {
-              DogDetailScreen(dog = dog, onClick = { finish()})
+              DogDetailScreen(onClick = { finish()})
             }
         }
     }

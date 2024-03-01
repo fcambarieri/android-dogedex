@@ -4,7 +4,6 @@ import android.util.Log
 import com.hackaprende.dogedex.model.Dog
 import com.hackaprende.dogedex.api.ApiResponseStatus
 import com.hackaprende.dogedex.api.ApiService
-import com.hackaprende.dogedex.api.DogsApi
 import com.hackaprende.dogedex.api.makeNetworkCall
 import java.lang.Exception
 import javax.inject.Inject
@@ -13,14 +12,13 @@ interface DogTasks {
     suspend fun downloadDogs(): ApiResponseStatus<List<Dog>>
     suspend fun getDogByMLId(mlDogId : String) : ApiResponseStatus<Dog>
 }
-class DogRepository  @Inject constructor() : DogTasks {
+class DogRepository  @Inject constructor(private val apiService: ApiService) : DogTasks {
 
-    private val retrofitService: ApiService by lazy { DogsApi.retrofitService }
 
     override suspend fun downloadDogs(): ApiResponseStatus<List<Dog>> {
         return makeNetworkCall {
             //getFakeDogs()
-            val response = retrofitService.getAllDogs()
+            val response = apiService.getAllDogs()
             return@makeNetworkCall response.data.dogs.map {
                 Dog(
                     it.id,
@@ -40,7 +38,7 @@ class DogRepository  @Inject constructor() : DogTasks {
     }
 
     override suspend fun getDogByMLId(mlDogId : String) : ApiResponseStatus<Dog> = makeNetworkCall {
-        val response = retrofitService.getDogByMLId(mlDogId)
+        val response = apiService.getDogByMLId(mlDogId)
         Log.d("GetDog", response.toString())
         if (!response.isSuccess) {
             throw Exception(response.message)

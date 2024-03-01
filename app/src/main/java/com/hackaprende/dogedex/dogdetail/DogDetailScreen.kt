@@ -31,13 +31,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import com.hackaprende.dogedex.R
 import com.hackaprende.dogedex.model.Dog
 import coil.compose.rememberImagePainter
 
 @Composable
-fun DogDetailScreen(dog : Dog, onClick : () -> Unit) {
+fun DogDetailScreen(onClick : () -> Unit, detailViewModel: DogDetailViewModel = hiltViewModel()) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -46,6 +47,7 @@ fun DogDetailScreen(dog : Dog, onClick : () -> Unit) {
         contentAlignment = Alignment.TopCenter
 
     ) {
+        val dog = detailViewModel.dog.value!!
 
         DogInformation(dog)
         Image(
@@ -268,10 +270,5 @@ private fun DogDataColumn(
 @Preview
 @Composable
 fun DogDetailPreview() {
-    DogDetailScreen(Dog(
-            1, 1, "Chihuahua", "Toy", "5.4",
-    "6.7", "https://cdn.pixabay.com/photo/2014/09/19/21/47/chihuahua-453063_1280.jpg",
-    "12 - 15", "", "10.5",
-    "12.3"
-    ), onClick = {})
+    DogDetailScreen(onClick = { })
 }

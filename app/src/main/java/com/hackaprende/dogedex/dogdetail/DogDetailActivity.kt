@@ -8,7 +8,9 @@ import androidx.annotation.RequiresApi
 import coil.load
 import com.hackaprende.dogedex.model.Dog
 import com.hackaprende.dogedex.databinding.ActivityDogDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DogDetailActivity : AppCompatActivity() {
 
     companion object {

@@ -6,11 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hackaprende.dogedex.api.ApiResponseStatus
 import com.hackaprende.dogedex.model.User
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AuthViewModel : ViewModel() {
-
-    private val authRepository = AuthRepository()
+@HiltViewModel
+class AuthViewModel @Inject constructor(private val authRepository : AuthTasks): ViewModel() {
 
     private val _user = MutableLiveData<User>()
     val user: LiveData<User> get() = _user

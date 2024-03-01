@@ -12,7 +12,9 @@ import com.hackaprende.dogedex.R
 import com.hackaprende.dogedex.api.ApiResponseStatus
 import com.hackaprende.dogedex.databinding.ActivityLoginBinding
 import com.hackaprende.dogedex.model.User
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentActions , SignUpFragment.SignUpFragmentActions{
 
     private val viewModel  : AuthViewModel by viewModels()

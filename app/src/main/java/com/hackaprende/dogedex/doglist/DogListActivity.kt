@@ -10,9 +10,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.hackaprende.dogedex.api.ApiResponseStatus
 import com.hackaprende.dogedex.databinding.ActivityDogListBinding
 import com.hackaprende.dogedex.dogdetail.DogDetailActivity
+import com.hackaprende.dogedex.dogdetail.DogDetailComposeActivity
+import dagger.hilt.android.AndroidEntryPoint
 
 private val GRID_SPAN_COUNT = 3
 
+@AndroidEntryPoint
 class DogListActivity : AppCompatActivity() {
 
     private val dogListViewModel: DogListViewModel by viewModels()
@@ -30,8 +33,8 @@ class DogListActivity : AppCompatActivity() {
 
         val adapter = DogAdapter()
         adapter.setOnItemClickListener {
-            val intent = Intent(this, DogDetailActivity::class.java)
-            intent.putExtra(DogDetailActivity.DOG_KEY, it)
+            val intent = Intent(this, DogDetailComposeActivity::class.java)
+            intent.putExtra(DogDetailComposeActivity.DOG_KEY, it)
             startActivity(intent)
         }
         recycler.adapter = adapter
